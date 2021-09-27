@@ -19,7 +19,6 @@ def parser():
 
 def main():
     arguments = parser()
-    print(arguments)
     testing_data = load_and_process(arguments['f'])
     model = joblib.load(arguments['model'])
     predictions = model.predict(testing_data)
