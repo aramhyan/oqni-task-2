@@ -1,6 +1,5 @@
-import math
-
-from  featuringFunctions import *
+import numpy as np
+from  featuring_functions import *
 
 
 def windowingPattern(data,window_size,func):
@@ -11,9 +10,8 @@ def windowingPattern(data,window_size,func):
   return featureData
 
 
-
-
-def getFeature(data,window_size,feature):
+def get_feature(data,window_size,feature):
+  data = np.array(data)
   feature_function_map={
     'iemg':sumOfAbs,
     'mav':meanOfAbs,
@@ -25,7 +23,14 @@ def getFeature(data,window_size,feature):
   return (lambda data,window_size:windowingPattern(data,window_size,feature_function_map[feature]))(data,window_size)
 
 
-data=[0,1,2,3,4,5,6,7,8,9]
-window_size=3
-a=getFeature(data,window_size,'iemg')
-print(a)
+def add_feature(data, data_feature, window_size, feature):
+  new_feature = get_feature(data, window_size, feature)
+  new_feature_name = f'{data_feature}_{feature}_{window_size}'
+  data[new_feature_name] = new_feature
+
+# 
+# data=[0,1,2,3,4,5,6,7,8,9]
+# window_size=3
+# a=getFeature(data,window_size,'iemg')
+# print(a)
+# 
