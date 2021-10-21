@@ -46,7 +46,7 @@ def main():
     model = joblib.load(arguments['model'])
     predictions = model.predict(testing_data)
 
-    # np.save('xgb_weighted_samples_predictions.npy', predictions)
+    np.save('xgb_weighted_samples_predictions.npy', predictions)
     return predictions
 
 if __name__=='__main__':
